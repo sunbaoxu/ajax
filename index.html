@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			margin: 10px 0;
+		}
+		b{
+			margin: 0 10px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">渲染数据</button>
+	<div id="box"></div>
+</body>
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script type="text/javascript">
+		var btn=document.getElementById('btn')
+		var div=document.getElementById('box')
+			btn.onclick=function(){
+				$.ajax({
+					type:'get',
+					url:'data/data.json',
+					async:true,
+					datatype:'json',
+					success:function(data){
+						var str='<h1>'+data.name+'</h1><ul>';
+						var arr=data.arr;
+						for(var i in arr){
+							str+='<li><b>姓名：</b><span>'+arr[i].name+'</span><b>年龄</b><span>'+arr[i].age+'</span></li>'
+						}
+						
+						div.innerHTML=str
+					}
+				})
+				
+			}
+	</script>
+</html>
